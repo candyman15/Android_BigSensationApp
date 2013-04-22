@@ -1,0 +1,8 @@
+<resources>
+
+    <string name="app_name">Preference</string>
+	<string name="testtile">Q.문제</string>
+	<string name="testnum">Number</string>
+	<string name="testselect1">select1</string>
+	<string name="testselect2">select2</string>
+</resources>
