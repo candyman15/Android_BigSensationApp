@@ -1,4 +1,4 @@
-package com.dh.preference;
+package com.bigsensation.preference;
 
 import com.dhpreference.R;
 
