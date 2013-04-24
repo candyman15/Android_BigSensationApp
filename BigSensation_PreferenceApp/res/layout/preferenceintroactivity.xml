@@ -16,6 +16,12 @@
         android:text="이어하기"
     />
     <Button
+        android:id="@+id/preferenceintroactivity_bt_gosocial"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="친구와비교"
+    />
+    <Button
         android:id="@+id/preferenceintroactivity_bt_test"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

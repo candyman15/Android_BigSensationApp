@@ -94,6 +94,44 @@ public class HttpUtil {
 
 	}
 	
+	public void matchAnswerOfFriend(Context _ctx, Handler _handler) throws Exception{
+		//if(httpXmlData3Thread != null && httpXmlData3Thread.isAlive()){
+		
+		//MessageUtil.showToast(_ctx, "서버 통신이 진행중입니다.\n잠시 기다려 주십시오.", Toast.LENGTH_SHORT);
+		
+		//}else{
+		
+		String strAddr = "http://eungoo.com/app/testJson.json";
+		ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();			
+		//prefs = PreferenceManager.getDefaultSharedPreferences(_ctx);
+		
+		try
+		{					
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_MODE,mode));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_CO_ID,STR_SERVER_REQUEST_MODE_APPR_VALUE_COID));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_IMEI_ID, DeviceInfoUtil.getMyIMEI(_ctx)));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_DOCDTL, docdtl));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_EMP_ID,createId));				
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_APPROVE_TYPE,type));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_DOC_ID,docId));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_APPROVE_OPIN,opin));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_APPROVE_AID,prefs.getString(XmlParserUtil.STR_LOGIN_CHECK_KEY_EMP_ID, "")));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_APPROVE_LAST,last));
+//				postParameters.add(new BasicNameValuePair(STR_SERVER_REQUEST_KEY_APPROVE_REQCL,reqCl));
+			
+			
+			httpDataThread = new HttpDataThread(_ctx, _handler, strAddr, postParameters);
+			
+			httpDataThread.start();
+			
+		}catch (Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+		//}
+		
+	}
+	
 	class HttpDataThread extends Thread
 	{
 		private Context ctx;
@@ -174,7 +212,7 @@ public class HttpUtil {
 
 				client = getHttpClient(ctx, strAddr); 
 
-				strResult = client.execute(post, mXmlDataResHandler);
+				strResult = client.execute(post, mDataResHandler);
 				
 			}
 			catch(SocketTimeoutException e)
@@ -265,9 +303,9 @@ public class HttpUtil {
 			return returnHttpClient;
 		}
 
-		ResponseHandler<String> mXmlDataResHandler = new ResponseHandler<String>()
+		ResponseHandler<String> mDataResHandler = new ResponseHandler<String>()
 		{
-			String SUBTAG = ".mXmlDataResHandler";
+			String SUBTAG = ".mDataResHandler";
 			
 			public String handleResponse(HttpResponse response) throws ClientProtocolException, IOException
 			{
@@ -281,7 +319,7 @@ public class HttpUtil {
 				{
 					if(HttpURLConnection.HTTP_OK == response.getStatusLine().getStatusCode())
 					{
-						BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent(),"iso-8859-1"),8);
+						BufferedReader br = new BufferedReader(new InputStreamReader(response.getEntity().getContent(),HTTP.UTF_8),8);
 	
 						while((strLine = br.readLine()) != null)
 						{

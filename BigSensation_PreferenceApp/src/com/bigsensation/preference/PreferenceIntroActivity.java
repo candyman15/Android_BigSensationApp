@@ -4,9 +4,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.bigsensation.preference.common.HttpUtil;
+import com.bigsensation.preference.common.TagActivity;
 import com.dhpreference.R;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,22 +22,31 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 	
 	private Button btNewStart;
 	private Button btNextStart;
+	private Button btGoSocial;
 	
 	private Button btTest;
 	private TextView tvTest;
 	
 	private HttpUtil httpUtil;
 	
+	private Intent intent;
+	
+	private SharedPreferences prefs = null;	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.preferenceintroactivity);
 		
+		prefs = getSharedPreferences("PrefName", MODE_PRIVATE);
+		
 		btNewStart = (Button)findViewById(R.id.preferenceintroactivity_bt_newstart);
 		btNextStart = (Button)findViewById(R.id.preferenceintroactivity_bt_nextstart);
+		btGoSocial = (Button)findViewById(R.id.preferenceintroactivity_bt_gosocial);
 		
 		btNewStart.setOnClickListener(this);
 		btNextStart.setOnClickListener(this);
+		btGoSocial.setOnClickListener(this);
 		
 		btTest = (Button)findViewById(R.id.preferenceintroactivity_bt_test);
 		btTest.setOnClickListener(this);
@@ -47,6 +59,25 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 	@Override
 	public void onClick(View v) {		
 		switch (v.getId()) {
+		case R.id.preferenceintroactivity_bt_newstart:			
+			SharedPreferences.Editor ed = prefs.edit();
+			ed.putInt(TagActivity.TEST_START_NUM,1); // 1부터 시작할수 있게 내부 저장소에 문제 번호를 1로 바꿈			
+			ed.commit();
+			
+			intent =  new Intent(this,PreferenceTestActivity.class);
+			startActivity(intent);
+			break;
+			
+		case R.id.preferenceintroactivity_bt_nextstart:
+			intent = new Intent(this,PreferenceTestActivity.class);
+			startActivity(intent);
+			break;
+			
+		case R.id.preferenceintroactivity_bt_gosocial:
+			intent = new Intent(this,PreferenceSocialActivity.class);
+			startActivity(intent);
+			break;
+		
 		case R.id.preferenceintroactivity_bt_test:
 			try
 			{

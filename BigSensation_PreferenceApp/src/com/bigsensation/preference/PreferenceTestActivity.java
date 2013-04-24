@@ -1,5 +1,6 @@
 package com.bigsensation.preference;
 
+import com.bigsensation.preference.common.TagActivity;
 import com.dhpreference.R;
 
 import android.app.Activity;
@@ -34,7 +35,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.preferencetestactivity);
 		
 		prefs = getSharedPreferences("PrefName", MODE_PRIVATE);
-		testNum = prefs.getInt("testNum", 1);
+		testNum = prefs.getInt(TagActivity.TEST_START_NUM, 1);
 		
 		tvTestNumber = (TextView)findViewById(R.id.preferencetestactivity_tv_testnumber); // 번호
 		
@@ -70,7 +71,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.preferencetestactivity_bt_next:
 			SharedPreferences.Editor ed = prefs.edit();
-			ed.putInt("testNum", testNum + 1);			
+			ed.putInt(TagActivity.TEST_START_NUM, testNum + 1);			
 			ed.commit();
 			
 			Intent intent = new Intent(this,PreferenceTestActivity.class);
