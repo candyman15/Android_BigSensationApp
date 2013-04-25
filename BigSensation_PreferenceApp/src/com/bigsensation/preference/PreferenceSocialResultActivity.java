@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class preferenceSocialResultActivity extends Activity {
+public class PreferenceSocialResultActivity extends Activity {
 
 	private TextView tvAnswerMatchNum;
 	private TextView tvComment;

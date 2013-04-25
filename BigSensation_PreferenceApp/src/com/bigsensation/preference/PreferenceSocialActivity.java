@@ -103,15 +103,15 @@ public class PreferenceSocialActivity extends Activity implements OnClickListene
 ////					tvTextTile.setText(jsonArray.getJSONObject(0).getString("title"));
 //					//tvTextContent.setText(jsonObject.getString("title"));
 //				    tvTest.setText(nick + ":" + name);
-					Intent intent = new Intent(mContext,preferenceSocialResultActivity.class);
-					intent.putExtra(TagActivity.SOCIAL_ANSWER_MATCH_NUM, "50");
-					intent.putExtra(TagActivity.SOCIAL_ANSWER_MATCH_COMMENT, "헤어져");
-					startActivity(intent);
+					
 				}
 			}catch (Exception e) {
 				
 			}finally{
-				
+				Intent intent = new Intent(mContext,PreferenceSocialResultActivity.class);
+				intent.putExtra(TagActivity.SOCIAL_ANSWER_MATCH_NUM, "50");
+				intent.putExtra(TagActivity.SOCIAL_ANSWER_MATCH_COMMENT, "헤어져");
+				startActivity(intent);
 				
 			}
 		}
