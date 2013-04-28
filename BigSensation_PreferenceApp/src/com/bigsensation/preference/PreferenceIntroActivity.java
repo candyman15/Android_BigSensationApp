@@ -21,7 +21,7 @@ import android.widget.TextView;
 public class PreferenceIntroActivity extends Activity implements OnClickListener{
 	
 	private Button btNewStart;
-	private Button btNextStart;
+	private Button btMemberJoin;
 	private Button btGoSocial;
 	
 	private Button btTest;
@@ -41,11 +41,11 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 		prefs = getSharedPreferences("PrefName", MODE_PRIVATE);
 		
 		btNewStart = (Button)findViewById(R.id.preferenceintroactivity_bt_newstart);
-		btNextStart = (Button)findViewById(R.id.preferenceintroactivity_bt_nextstart);
+		btMemberJoin = (Button)findViewById(R.id.preferenceintroactivity_bt_memberjoin);
 		btGoSocial = (Button)findViewById(R.id.preferenceintroactivity_bt_gosocial);
 		
 		btNewStart.setOnClickListener(this);
-		btNextStart.setOnClickListener(this);
+		btMemberJoin.setOnClickListener(this);
 		btGoSocial.setOnClickListener(this);
 		
 		btTest = (Button)findViewById(R.id.preferenceintroactivity_bt_test);
@@ -59,17 +59,14 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 	@Override
 	public void onClick(View v) {		
 		switch (v.getId()) {
-		case R.id.preferenceintroactivity_bt_newstart:			
-			SharedPreferences.Editor ed = prefs.edit();
-			ed.putInt(TagActivity.TEST_START_NUM,1); // 1부터 시작할수 있게 내부 저장소에 문제 번호를 1로 바꿈			
-			ed.commit();
+		case R.id.preferenceintroactivity_bt_newstart:						
 			
 			intent =  new Intent(this,PreferenceTestActivity.class);
 			startActivity(intent);
 			break;
 			
-		case R.id.preferenceintroactivity_bt_nextstart:
-			intent = new Intent(this,PreferenceTestActivity.class);
+		case R.id.preferenceintroactivity_bt_memberjoin:
+			intent = new Intent(this,PreferenceMemberJoinActivity.class);
 			startActivity(intent);
 			break;
 			

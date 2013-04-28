@@ -10,10 +10,10 @@
         android:text="새로 만들기"
     />
     <Button
-        android:id="@+id/preferenceintroactivity_bt_nextstart"
+        android:id="@+id/preferenceintroactivity_bt_memberjoin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="이어하기"
+        android:text="회원가입"
     />
     <Button
         android:id="@+id/preferenceintroactivity_bt_gosocial"

@@ -46,12 +46,16 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	private int restImageNum;
 	private int arrCount = 0;
 	private List<String> ramdomTestImageList;
+	
+	private StringBuffer sbSelectImg;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.preferencetestactivity);
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		tlImageTable = (TableLayout)findViewById(R.id.preferencetestactivity_tl_imagetable);
+		
+		sbSelectImg = new StringBuffer();
 		
 		//assets -> testImg 파일 이름 얻어오기 
 		am = getApplicationContext().getResources().getAssets();
@@ -87,13 +91,15 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 					
 					@Override
 					public void onClick(View v) {	
-						if(ivSelectYn.getVisibility() == View.VISIBLE)
-						{
+						if(ivSelectYn.getVisibility() == View.VISIBLE) // unselect
+						{							
 							ivSelectYn.setVisibility(View.INVISIBLE);
 						}
-						else						
-						{
+						else						// select
+						{						
 							ivSelectYn.setVisibility(View.VISIBLE);
+							ivSelectYn.bringToFront();
+							ivSelectYn.invalidate();
 						}
 						Toast.makeText(getApplicationContext(), "파일이름은 : " + tvImageFileName.getText().toString(), Toast.LENGTH_SHORT).show();
 					}
