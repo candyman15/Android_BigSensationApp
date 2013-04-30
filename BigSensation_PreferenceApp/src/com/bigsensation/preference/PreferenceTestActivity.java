@@ -58,6 +58,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	private LinearLayout llIntroduceTest;
 	
 	private Button btSendResult;
+	private TextView tvSelectPicNum;
 	
 	private HttpUtil httpUtil;
 	
@@ -80,6 +81,8 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 		btSendResult = (Button)findViewById(R.id.preferencetestactivity_bt_sendresult);
 		btSendResult.setOnClickListener(this);
 		
+		tvSelectPicNum = (TextView)findViewById(R.id.preferencetestactivity_tv_selectpicnum);
+		//tvSelectPicNum.setText(TagActivity.SELECT_PIC_NUM_TEXT + "0 /" + testImageList.length);
 		arrSelectImageList = new ArrayList<String>();
 		
 		//assets -> testImg 파일 이름 얻어오기 
@@ -99,7 +102,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 			trRowNum = testImageNum/3 + 1;
 		}
 		arrCount = 0;
-
+		
 		for(int i=0; i < trRowNum; i++){
 			
 			tr = new TableRow(this);
@@ -121,6 +124,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 						{							
 							ivSelectYn.setVisibility(View.INVISIBLE);
 							arrSelectImageList.remove(tvImageFileName.getText().toString());
+							
 						}
 						else						// select
 						{						
@@ -129,8 +133,9 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 							ivSelectYn.invalidate();
 							
 							arrSelectImageList.add(tvImageFileName.getText().toString());
-						}						
-						Toast.makeText(getApplicationContext(), "파일이름은 : " + tvImageFileName.getText().toString(), Toast.LENGTH_SHORT).show();
+						}
+						//tvSelectPicNum.setText(TagActivity.SELECT_PIC_NUM_TEXT + "/" + testImageList.length);
+						//Toast.makeText(getApplicationContext(), "파일이름은 : " + tvImageFileName.getText().toString(), Toast.LENGTH_SHORT).show();
 					}
 				});
 				
@@ -234,13 +239,13 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 				}
 				else
 				{
-					resultSelectFile += arrSelectImageList.get(i) + "^"; 					
+					resultSelectFile += arrSelectImageList.get(i) + ","; 					
 				}
 			}
 			Toast.makeText(getApplicationContext(), "선택한 파일은 : " + resultSelectFile, Toast.LENGTH_SHORT).show();
 			
 			httpUtil = new HttpUtil();
-			try {
+			try {				
 				httpUtil.sendSelectFileName(mContext,resultSelectFile,handlerSendSelectFileName);
 			} catch (Exception e) {				
 				e.printStackTrace();
@@ -263,7 +268,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 				if (strResult.equals(HttpUtil.HANDLER_RETURN_MESSAGE_ERROR)) 
 				{
 					//strResultErrorMessage = msg.getData().getString(HttpUtil.HANDLER_RETURN_MESSAGE_ERROR);
-					
+					Log.d("","---------------------------------------fail" + msg.getData().getString(HttpUtil.HANDLER_RETURN_MESSAGE_ERROR));
 					//MessageUtil.showFinishConfirmDialog(ctx, "예외상황 발생", "예외상황이 발생하여 화면이 종료됩니다.\n\n" + strResult, mProgress);
 				}
 				else
@@ -277,6 +282,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 //					tvTextTile.setText(jsonArray.getJSONObject(0).getString("title"));
 					//tvTextContent.setText(jsonObject.getString("title"));
 				    //tvTest.setText(nick + ":" + name);
+				    Log.d("","---------------------------------------" + jo);
 				}
 			}catch (Exception e) {
 				

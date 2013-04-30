@@ -42,6 +42,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 public class HttpUtil {
 
@@ -107,9 +108,8 @@ public class HttpUtil {
 		
 		try
 		{					
-				postParameters.add(new BasicNameValuePair("selectFileName",selectFileName));
-			
-			
+			postParameters.add(new BasicNameValuePair("selectFileName",selectFileName));
+						
 			httpDataThread = new HttpDataThread(_ctx, _handler, strAddr, postParameters);
 			
 			httpDataThread.start();
@@ -241,6 +241,7 @@ public class HttpUtil {
 				client = getHttpClient(ctx, strAddr); 
 
 				strResult = client.execute(post, mDataResHandler);
+				Log.d("","-----------------------------------sending1");
 				
 			}
 			catch(SocketTimeoutException e)
@@ -269,8 +270,7 @@ public class HttpUtil {
 				serverPostParameter = null;
 				formEntity = null;
 				post = null;
-				client = null;
-				
+				client = null;				
 				//strResult = CommonUtil.nvl(strResult, "");
 				//LogUtil.debugLog(ctx, TAG, " HttpXmlDataThread strResult:" + strResult);
 				//strErrorMessage = CommonUtil.nvl(strErrorMessage, "");
