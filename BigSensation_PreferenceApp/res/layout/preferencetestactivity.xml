@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-     <ScrollView
-    	android:layout_width="fill_parent"
-    	android:layout_height="fill_parent"    	    	
-     >       
-	 	<TableLayout
-	 	    android:id="@+id/preferencetestactivity_tl_imagetable"
-	 	    android:layout_width="fill_parent"
-	 	    android:layout_height="wrap_content" 	     	    
-	 	> 	   
+    <LinearLayout
+        android:id="@+id/preferencetestactivity_ll_introducetest"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"         
+    >
+        <TextView         
+        	android:layout_width="fill_parent"
+        	android:layout_height="fill_parent"
+        	android:layout_gravity="center_horizontal"
+        	android:gravity="center"
+        	android:textSize="50sp"        	
+        	android:text="메뉴얼"
+        	android:textColor="@android:color/white"
+        	android:background="@android:color/background_dark"    
+        />     
+    </LinearLayout>      
+    <LinearLayout       
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"         
+    >	
+        <ScrollView
+    		android:layout_width="fill_parent"
+    		android:layout_height="fill_parent"    	    	
+     	>       
+		 	<TableLayout
+		 	    android:id="@+id/preferencetestactivity_tl_imagetable"
+		 	    android:layout_width="fill_parent"
+		 	    android:layout_height="wrap_content" 	     	    
+		 	> 	   
 	 	</TableLayout>
-	</ScrollView>
-</LinearLayout>
+		</ScrollView>		
+	</LinearLayout>
+	<LinearLayout       
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:layout_gravity="bottom"        
+    >
+        <Button 
+            android:id="@+id/preferencetestactivity_bt_sendresult"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="r e s u l t"    
+        />
+    </LinearLayout> 	
+</FrameLayout>   

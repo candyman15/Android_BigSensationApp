@@ -2,6 +2,7 @@ package com.bigsensation.preference;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +13,6 @@ import com.dhpreference.R;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -47,7 +47,11 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	private int arrCount = 0;
 	private List<String> ramdomTestImageList;
 	
-	private StringBuffer sbSelectImg;
+	private ArrayList<String> arrSelectImageList; // 선택한 사진 파일 이름 담기 	
+	
+	private LinearLayout llIntroduceTest;
+	
+	private Button btSendResult;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
@@ -55,7 +59,15 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		tlImageTable = (TableLayout)findViewById(R.id.preferencetestactivity_tl_imagetable);
 		
-		sbSelectImg = new StringBuffer();
+		llIntroduceTest = (LinearLayout)findViewById(R.id.preferencetestactivity_ll_introducetest);
+		llIntroduceTest.bringToFront();
+		llIntroduceTest.invalidate();
+		llIntroduceTest.setOnClickListener(this);
+		
+		btSendResult = (Button)findViewById(R.id.preferencetestactivity_bt_sendresult);
+		btSendResult.setOnClickListener(this);
+		
+		arrSelectImageList = new ArrayList<String>();
 		
 		//assets -> testImg 파일 이름 얻어오기 
 		am = getApplicationContext().getResources().getAssets();
@@ -90,22 +102,26 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 				ivTestImage.setOnClickListener(new OnClickListener() {
 					
 					@Override
-					public void onClick(View v) {	
+					public void onClick(View v) {
+						
 						if(ivSelectYn.getVisibility() == View.VISIBLE) // unselect
 						{							
 							ivSelectYn.setVisibility(View.INVISIBLE);
+							arrSelectImageList.remove(tvImageFileName.getText().toString());
 						}
 						else						// select
 						{						
 							ivSelectYn.setVisibility(View.VISIBLE);
 							ivSelectYn.bringToFront();
 							ivSelectYn.invalidate();
-						}
+							
+							arrSelectImageList.add(tvImageFileName.getText().toString());
+						}						
 						Toast.makeText(getApplicationContext(), "파일이름은 : " + tvImageFileName.getText().toString(), Toast.LENGTH_SHORT).show();
 					}
 				});
 				
-				params = new TableRow.LayoutParams(0,400);
+				params = new TableRow.LayoutParams(0,200);
 			    params.weight = 3;
 			    
 			    LinearLayout fake_table_item = new LinearLayout(this);
@@ -190,7 +206,26 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {		
+		switch (v.getId()) {
+		case R.id.preferencetestactivity_ll_introducetest:
+			llIntroduceTest.setVisibility(View.GONE);
+			break;
+			
+		case R.id.preferencetestactivity_bt_sendresult:
+			String resultSelectFile = "";
+			for(int i = 0 ; i < arrSelectImageList.size(); i++)
+			{
+				if(i == arrSelectImageList.size() -1)
+				{
+					resultSelectFile += arrSelectImageList.get(i);
+				}
+				else
+				{
+					resultSelectFile += arrSelectImageList.get(i) + "^"; 					
+				}
+			}
+			Toast.makeText(getApplicationContext(), "선택한 파일은 : " + resultSelectFile, Toast.LENGTH_SHORT).show();
+			break;
 
 		default:
 			break;
