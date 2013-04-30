@@ -52,7 +52,7 @@ public class HttpUtil {
 	private static final int DOWN_LOAD_TIMEOUT_XML = 10000;
 	private static final int DOWN_LOAD_TIMEOUT_IMAGE_CONNECT = 10000;
 	private static final int DOWN_LOAD_TIMEOUT_IMAGE_SO = 10000;
-
+		
 	private static HttpDataThread httpDataThread = null;
 
 	
@@ -92,6 +92,34 @@ public class HttpUtil {
 			}
 		//}
 
+	}
+	
+	public void sendSelectFileName(Context _ctx, String selectFileName, Handler _handler) throws Exception{
+		//if(httpXmlData3Thread != null && httpXmlData3Thread.isAlive()){
+		
+		//MessageUtil.showToast(_ctx, "서버 통신이 진행중입니다.\n잠시 기다려 주십시오.", Toast.LENGTH_SHORT);
+		
+		//}else{
+		
+		String strAddr = "http://eungoo.com/app/testJson.json";
+		ArrayList<NameValuePair> postParameters = new ArrayList<NameValuePair>();			
+		//prefs = PreferenceManager.getDefaultSharedPreferences(_ctx);
+		
+		try
+		{					
+				postParameters.add(new BasicNameValuePair("selectFileName",selectFileName));
+			
+			
+			httpDataThread = new HttpDataThread(_ctx, _handler, strAddr, postParameters);
+			
+			httpDataThread.start();
+			
+		}catch (Exception e){
+			e.printStackTrace();
+			throw e;
+		}
+		//}
+		
 	}
 	
 	public void matchAnswerOfFriend(Context _ctx, Handler _handler) throws Exception{

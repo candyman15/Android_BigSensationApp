@@ -7,6 +7,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.bigsensation.preference.common.HttpUtil;
 import com.bigsensation.preference.common.TagActivity;
 import com.dhpreference.R;
 
@@ -17,6 +21,8 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,10 +58,17 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	private LinearLayout llIntroduceTest;
 	
 	private Button btSendResult;
+	
+	private HttpUtil httpUtil;
+	
+	private Context mContext;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.preferencetestactivity);
+		
+		mContext = this;
+		
 		inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		tlImageTable = (TableLayout)findViewById(R.id.preferencetestactivity_tl_imagetable);
 		
@@ -225,6 +238,13 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 				}
 			}
 			Toast.makeText(getApplicationContext(), "선택한 파일은 : " + resultSelectFile, Toast.LENGTH_SHORT).show();
+			
+			httpUtil = new HttpUtil();
+			try {
+				httpUtil.sendSelectFileName(mContext,resultSelectFile,handlerSendSelectFileName);
+			} catch (Exception e) {				
+				e.printStackTrace();
+			}
 			break;
 
 		default:
@@ -233,5 +253,39 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 		
 	}
 
+	Handler handlerSendSelectFileName = new Handler()
+	{
+		@Override
+		public void handleMessage(Message msg) {
+			try{
+				String strResult = msg.getData().getString(HttpUtil.HANDLER_RETURN_MESSAGE_RESPONSE);
+				
+				if (strResult.equals(HttpUtil.HANDLER_RETURN_MESSAGE_ERROR)) 
+				{
+					//strResultErrorMessage = msg.getData().getString(HttpUtil.HANDLER_RETURN_MESSAGE_ERROR);
+					
+					//MessageUtil.showFinishConfirmDialog(ctx, "예외상황 발생", "예외상황이 발생하여 화면이 종료됩니다.\n\n" + strResult, mProgress);
+				}
+				else
+				{
+					//JSONArray jsonArray = new JSONArray(strResult);
+					JSONObject jsonObject = new JSONObject(strResult);
+					String jo = jsonObject.getString("returnList");
+					JSONArray jsonArray = new JSONArray(jo);
+					String nick = jsonArray.getJSONObject(0).getString("nick");
+				    String name = jsonArray.getJSONObject(0).getString("name");
+//					tvTextTile.setText(jsonArray.getJSONObject(0).getString("title"));
+					//tvTextContent.setText(jsonObject.getString("title"));
+				    //tvTest.setText(nick + ":" + name);
+				}
+			}catch (Exception e) {
+				
+			}finally{
+				
+				
+			}
+		}
+		
+	};
 	
 }

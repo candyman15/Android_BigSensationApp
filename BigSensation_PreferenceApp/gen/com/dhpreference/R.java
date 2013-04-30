@@ -26,10 +26,12 @@ public final class R {
         public static final int preferencesocialactivity_bt_addfriend=0x7f060009;
         public static final int preferencesocialresult_tv_answermatchnum=0x7f06000a;
         public static final int preferencesocialresult_tv_comment=0x7f06000b;
-        public static final int preferencetestactivity_image_table_iv_item=0x7f06000e;
-        public static final int preferencetestactivity_image_table_iv_select=0x7f06000d;
-        public static final int preferencetestactivity_image_table_tv_filename=0x7f06000f;
-        public static final int preferencetestactivity_tl_imagetable=0x7f06000c;
+        public static final int preferencetestactivity_bt_sendresult=0x7f06000e;
+        public static final int preferencetestactivity_image_table_iv_item=0x7f060010;
+        public static final int preferencetestactivity_image_table_iv_select=0x7f06000f;
+        public static final int preferencetestactivity_image_table_tv_filename=0x7f060011;
+        public static final int preferencetestactivity_ll_introducetest=0x7f06000c;
+        public static final int preferencetestactivity_tl_imagetable=0x7f06000d;
     }
     public static final class layout {
         public static final int preferenceintroactivity=0x7f030000;
