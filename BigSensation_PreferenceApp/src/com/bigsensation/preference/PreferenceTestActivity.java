@@ -169,12 +169,18 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	
 	private Bitmap getTestBitmapImage(AssetManager am,String fileName){
 		InputStream is = null;
+		Bitmap bitMap = null;
 		try{			
 			is = am.open("testImg/"+fileName);
+			BitmapFactory.Options op = new BitmapFactory.Options();
+			op.inSampleSize = 4;
+			bitMap = BitmapFactory.decodeStream(is,null,op);
 		}catch(IOException e){
 			e.printStackTrace();
+		}catch (OutOfMemoryError e) {	        
+	        System.gc();
 		}
-		return BitmapFactory.decodeStream(is);
+		return bitMap;
 	}
 	
 	private void randomTestImage(String[] stringArray,int num){
