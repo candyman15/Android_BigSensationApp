@@ -31,6 +31,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -60,6 +61,8 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	private Button btSendResult;
 	private TextView tvSelectPicNum;
 	
+	private ProgressBar pbSelectPicNum;
+	
 	private HttpUtil httpUtil;
 	
 	private Context mContext;
@@ -85,9 +88,11 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 		//tvSelectPicNum.setText(TagActivity.SELECT_PIC_NUM_TEXT + "0 /" + testImageList.length);
 		arrSelectImageList = new ArrayList<String>();
 		
+		pbSelectPicNum = (ProgressBar)findViewById(R.id.preferencetestactivity_pb_selectpicnum);
 		//assets -> testImg 파일 이름 얻어오기 
 		am = getApplicationContext().getResources().getAssets();
 		displayFileName(am,"testImg");
+		pbSelectPicNum.setProgress(0);
 		
 		randomTestImage(testImageList,testImageList.length);
 		
@@ -125,6 +130,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 							ivSelectYn.setVisibility(View.INVISIBLE);
 							arrSelectImageList.remove(tvImageFileName.getText().toString());
 							
+							//pbSelectPicNum.
 						}
 						else						// select
 						{						
@@ -133,8 +139,10 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 							ivSelectYn.invalidate();
 							
 							arrSelectImageList.add(tvImageFileName.getText().toString());
+							
 						}
-						//tvSelectPicNum.setText(TagActivity.SELECT_PIC_NUM_TEXT + "/" + testImageList.length);
+						pbSelectPicNum.setProgress(arrSelectImageList.size());
+						tvSelectPicNum.setText("you're picking " + arrSelectImageList.size() + " photos");
 						//Toast.makeText(getApplicationContext(), "파일이름은 : " + tvImageFileName.getText().toString(), Toast.LENGTH_SHORT).show();
 					}
 				});

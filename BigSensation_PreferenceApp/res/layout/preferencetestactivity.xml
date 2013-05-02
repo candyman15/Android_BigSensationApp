@@ -1,58 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
     <LinearLayout
         android:id="@+id/preferencetestactivity_ll_introducetest"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"         
+	>
+		<TextView         
+			android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:layout_gravity="center_horizontal"
+		    android:gravity="center"
+		    android:textSize="50sp"        	
+		    android:text="메뉴얼"
+		    android:textColor="@android:color/white"
+		    android:background="@android:color/background_dark"    
+		/>     
+	</LinearLayout>      
+    <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"         
-    >
-        <TextView         
-        	android:layout_width="fill_parent"
-        	android:layout_height="fill_parent"
-        	android:layout_gravity="center_horizontal"
-        	android:gravity="center"
-        	android:textSize="50sp"        	
-        	android:text="메뉴얼"
-        	android:textColor="@android:color/white"
-        	android:background="@android:color/background_dark"    
-        />     
-    </LinearLayout>      
-    <LinearLayout       
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"         
-    >	
-        <ScrollView
-    		android:layout_width="fill_parent"
-    		android:layout_height="fill_parent"    	    	
-     	>       
-		 	<TableLayout
-		 	    android:id="@+id/preferencetestactivity_tl_imagetable"
-		 	    android:layout_width="fill_parent"
-		 	    android:layout_height="wrap_content" 	     	    
-		 	> 	   
-	 	</TableLayout>
-		</ScrollView>		
+        android:layout_height="0dip"
+        android:layout_weight="9" 
+    >       		     	                  
+	    <FrameLayout
+	        android:layout_width="fill_parent"
+	        android:layout_height="fill_parent" 
+	    >
+	    	          		    
+		    <LinearLayout       
+		        android:layout_width="fill_parent"
+		        android:layout_height="fill_parent"         
+		    >	
+		        <ScrollView
+		    		android:layout_width="fill_parent"
+		    		android:layout_height="fill_parent"    	    	
+		     	>       
+				 	<TableLayout
+				 	    android:id="@+id/preferencetestactivity_tl_imagetable"
+				 	    android:layout_width="fill_parent"
+				 	    android:layout_height="wrap_content" 	     	    
+				 	> 	   
+			 	</TableLayout>
+				</ScrollView>		
+			</LinearLayout>
+			<LinearLayout       
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content" 
+		        android:layout_gravity="bottom"
+		        android:orientation="horizontal"        
+		    >
+		        <ProgressBar 
+		        	android:id="@+id/preferencetestactivity_pb_selectpicnum"
+		        	style="?android:attr/progressBarStyleHorizontal"
+		        	android:layout_width="0dip"
+		        	android:layout_height="wrap_content"		        	
+		            android:layout_weight="6"
+		            android:progressDrawable="@drawable/progressbar_custom"
+		           
+		        />
+		        <TextView 
+		            android:id="@+id/preferencetestactivity_tv_selectpicnum"
+		        	android:layout_width="0dip"
+		        	android:layout_height="wrap_content"
+		        	android:layout_weight="4"
+		        	android:text="you're picking 0 photos" 		        	           
+		        />		        
+		    </LinearLayout> 
+	    </FrameLayout>
 	</LinearLayout>
-	<LinearLayout       
+	<LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:layout_gravity="bottom"
-        android:orientation="horizontal"        
+        android:layout_height="0dip"
+        android:layout_weight="1" 
     >
-        <TextView 
-            android:id="@+id/preferencetestactivity_tv_selectpicnum"
-        	android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:text="선택한 사진 개수" 
-        	           
-        />
-        <Button 
-            android:id="@+id/preferencetestactivity_bt_sendresult"
-        	android:layout_width="150dip"
-        	android:layout_height="wrap_content"
-        	android:text="r e s u l t"    
-        />
-    </LinearLayout> 	
-</FrameLayout>   
+	    <Button
+	        android:id="@+id/preferencetestactivity_bt_sendresult" 
+	    	android:layout_width="fill_parent"
+	    	android:layout_height="wrap_content"
+	    	android:text="pick me out"    
+	    />
+	</LinearLayout>         	
+</LinearLayout>   
