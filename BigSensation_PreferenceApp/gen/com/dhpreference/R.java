@@ -20,30 +20,37 @@ public final class R {
         public static final int preferenceintroactivity_bt_newstart=0x7f060000;
         public static final int preferenceintroactivity_bt_test=0x7f060003;
         public static final int preferenceintroactivity_tv_test=0x7f060004;
-        public static final int preferencememberjoinactivity_bt_join=0x7f060007;
+        public static final int preferencememberjoinactivity_bt_join=0x7f06000a;
+        public static final int preferencememberjoinactivity_et_birtyday=0x7f060008;
+        public static final int preferencememberjoinactivity_et_bloodtype=0x7f060007;
         public static final int preferencememberjoinactivity_et_email=0x7f060005;
         public static final int preferencememberjoinactivity_et_nickname=0x7f060006;
-        public static final int preferencesocailactivity_inputfrienddialog_et_inputid=0x7f060008;
-        public static final int preferencesocialactivity_bt_addfriend=0x7f060009;
-        public static final int preferencesocialresult_tv_answermatchnum=0x7f06000a;
-        public static final int preferencesocialresult_tv_comment=0x7f06000b;
-        public static final int preferencetestactivity_bt_sendresult=0x7f060010;
-        public static final int preferencetestactivity_image_table_iv_item=0x7f060012;
-        public static final int preferencetestactivity_image_table_iv_select=0x7f060011;
-        public static final int preferencetestactivity_image_table_tv_filename=0x7f060013;
-        public static final int preferencetestactivity_ll_introducetest=0x7f06000c;
-        public static final int preferencetestactivity_pb_selectpicnum=0x7f06000e;
-        public static final int preferencetestactivity_tl_imagetable=0x7f06000d;
-        public static final int preferencetestactivity_tv_selectpicnum=0x7f06000f;
+        public static final int preferencememberjoinactivity_et_pw=0x7f060009;
+        public static final int preferencememberloginactivity_bt_gojoin=0x7f06000d;
+        public static final int preferencememberloginnactivity_et_email=0x7f06000b;
+        public static final int preferencememberloginnactivity_et_pw=0x7f06000c;
+        public static final int preferencesocailactivity_inputfrienddialog_et_inputid=0x7f06000e;
+        public static final int preferencesocialactivity_bt_addfriend=0x7f06000f;
+        public static final int preferencesocialresult_tv_answermatchnum=0x7f060010;
+        public static final int preferencesocialresult_tv_comment=0x7f060011;
+        public static final int preferencetestactivity_bt_sendresult=0x7f060016;
+        public static final int preferencetestactivity_image_table_iv_item=0x7f060018;
+        public static final int preferencetestactivity_image_table_iv_select=0x7f060017;
+        public static final int preferencetestactivity_image_table_tv_filename=0x7f060019;
+        public static final int preferencetestactivity_ll_introducetest=0x7f060012;
+        public static final int preferencetestactivity_pb_selectpicnum=0x7f060014;
+        public static final int preferencetestactivity_tl_imagetable=0x7f060013;
+        public static final int preferencetestactivity_tv_selectpicnum=0x7f060015;
     }
     public static final class layout {
         public static final int preferenceintroactivity=0x7f030000;
         public static final int preferencememberjoinactivity=0x7f030001;
-        public static final int preferencesocialactivitiy_inputfrienddialog=0x7f030002;
-        public static final int preferencesocialactivity=0x7f030003;
-        public static final int preferencesocialresultactivity=0x7f030004;
-        public static final int preferencetestactivity=0x7f030005;
-        public static final int preferencetestactivity_image_table_item=0x7f030006;
+        public static final int preferencememberloginactivity=0x7f030002;
+        public static final int preferencesocialactivitiy_inputfrienddialog=0x7f030003;
+        public static final int preferencesocialactivity=0x7f030004;
+        public static final int preferencesocialresultactivity=0x7f030005;
+        public static final int preferencetestactivity=0x7f030006;
+        public static final int preferencetestactivity_image_table_item=0x7f030007;
     }
     public static final class string {
         public static final int app_name=0x7f040000;

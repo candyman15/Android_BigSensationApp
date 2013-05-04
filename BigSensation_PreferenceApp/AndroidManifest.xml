@@ -23,6 +23,9 @@
         <activity android:name="com.bigsensation.preference.PreferenceMemberJoinActivity"
                   android:theme="@android:style/Theme.Dialog"
                   android:windowSoftInputMode="stateHidden"></activity>
+        <activity android:name="com.bigsensation.preference.PreferenceMemberLoginActivity"
+                  android:theme="@android:style/Theme.Dialog"
+                  android:windowSoftInputMode="stateHidden"></activity>
         <activity android:name="com.bigsensation.preference.PreferenceSocialActivity"></activity>
         <activity android:name="com.bigsensation.preference.PreferenceSocialResultActivity"></activity>
     </application>
