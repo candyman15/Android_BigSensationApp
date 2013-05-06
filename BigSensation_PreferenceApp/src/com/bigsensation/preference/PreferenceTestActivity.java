@@ -252,12 +252,13 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 			}
 			Toast.makeText(getApplicationContext(), "선택한 파일은 : " + resultSelectFile, Toast.LENGTH_SHORT).show();
 			
-			httpUtil = new HttpUtil();
-			try {				
-				httpUtil.sendSelectFileName(mContext,resultSelectFile,handlerSendSelectFileName);
-			} catch (Exception e) {				
-				e.printStackTrace();
-			}
+//			httpUtil = new HttpUtil();
+//			try {				
+//				httpUtil.sendSelectFileName(mContext,resultSelectFile,handlerSendSelectFileName);
+//			} catch (Exception e) {				
+//				e.printStackTrace();
+//			}
+			
 			break;
 
 		default:

@@ -41,6 +41,8 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 	private HttpUtil httpUtil;
 	
 	private Intent intent;
+	
+	private TextView tvNickName;
 			
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
@@ -57,6 +59,8 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 		
 		btTest = (Button)findViewById(R.id.preferenceintroactivity_bt_test);
 		btTest.setOnClickListener(this);
+		
+		tvNickName = (TextView)findViewById(R.id.preferenceintroactivity_tv_nickname);
 		
 		tvTest = (TextView)findViewById(R.id.preferenceintroactivity_tv_test);
 		
@@ -200,7 +204,10 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 		}
 		else // 로그인이 되어있다고 판단하여서 서버에 로그인 함
 		{
-			
+			while(c1.moveToNext())
+			{
+				tvNickName.setText(c1.getString(c1.getColumnIndex("nickname")).toString());				
+			}
 		}
 		
 		

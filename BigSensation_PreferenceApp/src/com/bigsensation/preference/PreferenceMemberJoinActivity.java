@@ -127,8 +127,7 @@ public class PreferenceMemberJoinActivity extends Activity implements OnClickLis
 					                                                         "nickname = '" + nickName + "'," +
 					                                                         "birty_day = '" + birtyDay + "'," +
 					                                                         "blood_type = '" + bloodType + "'" +
-					                                                         "where id= '" + _id + "'"; 
-					                                                         		
+					                                                         "where id= '" + _id + "'"; 					                                                         		
 		}
 								    			
 		try{			
@@ -140,9 +139,7 @@ public class PreferenceMemberJoinActivity extends Activity implements OnClickLis
     		e.printStackTrace();	    		
     	}finally{
     		db.close();
-    	}
-		
-		
+    	}				
 	}
 	
 }
