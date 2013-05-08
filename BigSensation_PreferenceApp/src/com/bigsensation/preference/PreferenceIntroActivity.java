@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import com.bigsensation.preference.common.HttpUtil;
 import com.bigsensation.preference.common.TagActivity;
 import com.dhpreference.R;
+import com.google.analytics.tracking.android.EasyTracker;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -47,7 +48,9 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.preferenceintroactivity);				
+		setContentView(R.layout.preferenceintroactivity);
+		
+		EasyTracker.getInstance().activityStart(this);
 		
 		btNewStart = (Button)findViewById(R.id.preferenceintroactivity_bt_newstart);
 		btMemberJoin = (Button)findViewById(R.id.preferenceintroactivity_bt_memberjoin);
@@ -214,4 +217,14 @@ public class PreferenceIntroActivity extends Activity implements OnClickListener
 		db.close();
 		
 	}
+
+
+
+	@Override
+	protected void onDestroy() {		
+		super.onDestroy();
+		EasyTracker.getInstance().activityStop(this);
+	}
+	
+	
 }
