@@ -1,0 +1,113 @@
+/*
+ * adlibr - Library for mobile AD mediation.
+ * http://adlibr.com
+ * Copyright (c) 2012-2013 Mocoplex, Inc.  All rights reserved.
+ * Licensed under the BSD open source license.
+ */
+
+/*
+ * confirmed compatible with ShallWeAd SDK 2.4.3
+ */
+
+package com.bigsensation.preference.ads;
+
+import com.jm.co.shallwead.sdk.ShallWeAdBanner;
+import com.jm.co.shallwead.sdk.ShallWeAdBannerListener;
+import com.mocoplex.adlib.SubAdlibAdViewCore;
+
+import android.content.Context;
+import android.os.Handler;
+import android.util.AttributeSet;
+
+public class SubAdlibAdViewShallWeAd extends SubAdlibAdViewCore  {
+	
+	protected ShallWeAdBanner ad;
+	protected boolean bGotAd = false;
+	
+	public SubAdlibAdViewShallWeAd(Context context) {
+		this(context, null);
+	}	
+	
+	public SubAdlibAdViewShallWeAd(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		
+		ad = new ShallWeAdBanner(context);
+		ad.setBannerListener(new ShallWeAdBannerListener() {
+			@Override
+			public void onShowBannerResult(boolean pResult) {
+				if(pResult) {
+					bGotAd = true;
+				} else {
+					if(!bGotAd)
+						failed();
+				}
+			}
+		});
+				
+		LayoutParams params = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+		ad.setLayoutParams(params);
+
+		this.addView(ad);
+	}
+
+	// 스케줄러에의해 자동으로 호출됩니다.
+	// 실제로 광고를 보여주기 위하여 요청합니다.	
+	public void query() {
+		// background request 를 지원하지 않는 플랫폼입니다.
+		// 먼저 광고뷰를 화면에 보이고 수신여부를 확인합니다.
+		gotAd();
+		
+		if(!bGotAd)
+		{
+			// 3초 이상 리스너 응답이 없으면 다음 플랫폼으로 넘어갑니다.
+			Handler adHandler = new Handler();
+			adHandler.postDelayed(new Runnable() {
+
+				@Override
+				public void run() {
+					if(bGotAd)
+						return;
+					else
+						failed();
+				}
+				
+			}, 3000);
+		}
+	}
+
+	// 광고뷰를 삭제하는 경우 호출됩니다. 
+	public void clearAdView()
+	{
+		if(ad != null) {
+			ad = null;			
+		}
+
+		super.clearAdView();
+	}
+	
+	public void onResume()
+	{
+		super.onResume();
+		
+		if(ad != null) {
+		}
+	}
+	public void onPause()
+	{
+		super.onPause();
+		
+		if(ad != null) {
+		}		
+	}
+    public void onDestroy()
+	{
+		super.onDestroy();
+		
+		if(ad != null)
+		{
+			this.removeView(ad);
+			ad.destroy();
+			ad = null;
+		}
+	}
+}

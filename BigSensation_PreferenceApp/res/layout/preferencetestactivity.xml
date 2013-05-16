@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    >
     <LinearLayout
         android:id="@+id/preferencetestactivity_ll_introducetest"
 		android:layout_width="fill_parent"
@@ -22,7 +23,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="9" 
+        android:layout_weight="9"                
     >       		     	                  
 	    <FrameLayout
 	        android:layout_width="fill_parent"
@@ -31,7 +32,8 @@
 	    	          		    
 		    <LinearLayout       
 		        android:layout_width="fill_parent"
-		        android:layout_height="fill_parent"         
+		        android:layout_height="fill_parent"
+		        android:background="@drawable/testactivity_bg"         
 		    >	
 		        <ScrollView
 		    		android:layout_width="fill_parent"
@@ -40,9 +42,12 @@
 				 	<TableLayout
 				 	    android:id="@+id/preferencetestactivity_tl_imagetable"
 				 	    android:layout_width="fill_parent"
-				 	    android:layout_height="wrap_content" 	     	    
+				 	    android:layout_height="wrap_content" 
+				 	    android:paddingLeft="10dip"	     	    
+				 	    android:paddingRight="10dip"	     	    
+				 	    android:paddingTop="15dip"	     	    
 				 	> 	   
-			 	</TableLayout>
+			 		</TableLayout>
 				</ScrollView>		
 			</LinearLayout>
 			<LinearLayout       
@@ -74,12 +79,13 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="1" 
+        android:gravity="center"
     >
-	    <Button
-	        android:id="@+id/preferencetestactivity_bt_sendresult" 
-	    	android:layout_width="fill_parent"
-	    	android:layout_height="wrap_content"
-	    	android:text="pick me out"    
+	    <ImageView
+	        android:id="@+id/preferencetestactivity_iv_sendresult" 
+	    	android:layout_width="150dip"
+	    	android:layout_height="70dip"
+	    	android:src="@drawable/picmeout"		               	    
 	    />
 	</LinearLayout>         	
 </LinearLayout>   

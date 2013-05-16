@@ -27,8 +27,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -58,7 +61,7 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	
 	private LinearLayout llIntroduceTest;
 	
-	private Button btSendResult;
+	private ImageView ivSendResult;
 	private TextView tvSelectPicNum;
 	
 	private ProgressBar pbSelectPicNum;
@@ -66,6 +69,8 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	private HttpUtil httpUtil;
 	
 	private Context mContext;
+	
+	private Animation ani;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {		
 		super.onCreate(savedInstanceState);
@@ -81,8 +86,8 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 		llIntroduceTest.invalidate();
 		llIntroduceTest.setOnClickListener(this);
 		
-		btSendResult = (Button)findViewById(R.id.preferencetestactivity_bt_sendresult);
-		btSendResult.setOnClickListener(this);
+		ivSendResult = (ImageView)findViewById(R.id.preferencetestactivity_iv_sendresult);
+		ivSendResult.setOnClickListener(this);
 		
 		tvSelectPicNum = (TextView)findViewById(R.id.preferencetestactivity_tv_selectpicnum);
 		//tvSelectPicNum.setText(TagActivity.SELECT_PIC_NUM_TEXT + "0 /" + testImageList.length);
@@ -108,9 +113,30 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 		}
 		arrCount = 0;
 		
+		BackThread thread = new BackThread();
+		thread.setDaemon(true);
+		thread.start();
+	}
+	
+	class BackThread extends Thread {
+	     public void run() {
+	    	 Message msg = handler.obtainMessage();
+	 		handler.sendMessage(msg);
+	} 
+	}
+	
+	final Handler handler = new Handler()
+	{
+		public void handleMessage(Message msg)
+		{
+			loadPicture();
+		}
+	};
+	
+	private void loadPicture(){
 		for(int i=0; i < trRowNum; i++){
 			
-			tr = new TableRow(this);
+			tr = new TableRow(mContext);
 			
 			for(int j=0; j < 3 ; j++){
 				LinearLayout table_item = (LinearLayout)inflater.inflate(R.layout.preferencetestactivity_image_table_item, null);
@@ -234,10 +260,12 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.preferencetestactivity_ll_introducetest:
+			ani = AnimationUtils.loadAnimation(mContext, R.anim.gone);
+			llIntroduceTest.startAnimation(ani);
 			llIntroduceTest.setVisibility(View.GONE);
 			break;
 			
-		case R.id.preferencetestactivity_bt_sendresult:
+		case R.id.preferencetestactivity_iv_sendresult:
 			String resultSelectFile = "";
 			for(int i = 0 ; i < arrSelectImageList.size(); i++)
 			{
@@ -258,6 +286,10 @@ public class PreferenceTestActivity extends Activity implements OnClickListener{
 //			} catch (Exception e) {				
 //				e.printStackTrace();
 //			}
+			Intent intent = new Intent(this,PreferenceTestResultActivity.class);
+			ani = AnimationUtils.loadAnimation(mContext, R.anim.goneandshow);
+
+			startActivity(intent);
 			
 			break;
 
