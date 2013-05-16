@@ -2,18 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:background="@android:color/white"
+    >
     <LinearLayout 
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="9.2"
+        android:orientation="vertical" 
     >
-        
+    	<TextView
+    		android:layout_width="fill_parent"
+        	android:layout_height="0dip"
+        	android:layout_weight="2"   
+        	android:layout_gravity="center" 
+    	    android:text="당신은 fucker형인재입니다."
+    	/>    
+    	<TextView
+    		android:layout_width="fill_parent"
+        	android:layout_height="0dip"
+        	android:layout_weight="6"    
+        	android:layout_gravity="center"
+    	    android:text="Fucker 형 인간은 후리한 삶을 즐기고 사람들을 좋아하며 이해심이 많아 인기가 많은편입니다. 하지만 감성적인 편이라 감정의 변화가 심해 짜증을 많이 내기도 합니다. 사랑에 있어서는 정열적이고 거침이 없어 발찌 애호가가 많습니다. 일을 처리함에 있어서 항상 차분하고 이성적으로 하는 것을 선호합니다. "
+    	/>
+    	<TextView
+    		android:layout_width="fill_parent"
+        	android:layout_height="0dip"
+        	android:layout_weight="2"
+        	android:layout_gravity="center"    
+    	    android:text="대표인물: 토니안,고영욱,김응룡"
+    	/>      
     </LinearLayout>
     <LinearLayout         
         android:layout_width="fill_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.8"        
+        android:layout_weight="0.8"                
     >
     	<!-- adlib adview -->
 		<com.mocoplex.adlib.AdlibAdViewContainer

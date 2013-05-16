@@ -54,7 +54,10 @@
 		        android:layout_width="fill_parent"
 		        android:layout_height="wrap_content" 
 		        android:layout_gravity="bottom"
-		        android:orientation="horizontal"        
+		        android:orientation="horizontal"   
+		        android:layout_marginBottom="15dip"
+		        android:layout_marginLeft="10dip"     
+		        android:layout_marginRight="10dip"     
 		    >
 		        <ProgressBar 
 		        	android:id="@+id/preferencetestactivity_pb_selectpicnum"
