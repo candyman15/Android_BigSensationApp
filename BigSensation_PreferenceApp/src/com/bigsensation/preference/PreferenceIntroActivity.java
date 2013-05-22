@@ -46,9 +46,10 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 	private Intent intent;
 	
 	private TextView tvNickName;
-			
+			 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {		
+	protected void onCreate(Bundle savedInstanceState) {
+		//Test
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.preferenceintroactivity);
 		
@@ -71,10 +72,10 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 		
 		initAds();
 		
-		//Sqlite db sd card로 생성
+		//Sqlite db sd card濡��앹꽦
 		copyDB();
 		
-		//자신의 계정에 대한 상태에 따라서 로그인창을 띄울지 자동로그인을 할지 판단
+		//�먯떊��怨꾩젙����븳 �곹깭���곕씪��濡쒓렇�몄갹���꾩슱吏��먮룞濡쒓렇�몄쓣 �좎� �먮떒
 		getMyInfo();
 	}
 
@@ -125,7 +126,7 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 				{
 					//strResultErrorMessage = msg.getData().getString(HttpUtil.HANDLER_RETURN_MESSAGE_ERROR);
 					
-					//MessageUtil.showFinishConfirmDialog(ctx, "예외상황 발생", "예외상황이 발생하여 화면이 종료됩니다.\n\n" + strResult, mProgress);
+					//MessageUtil.showFinishConfirmDialog(ctx, "�덉쇅�곹솴 諛쒖깮", "�덉쇅�곹솴��諛쒖깮�섏뿬 �붾㈃��醫낅즺�⑸땲��\n\n" + strResult, mProgress);
 				}
 				else
 				{
@@ -149,7 +150,7 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 		
 	};
 
-	//asset에세 db를 외부 sd카드로 옮기는 함수 start
+	//asset�먯꽭 db瑜��몃� sd移대뱶濡���린���⑥닔 start
 	public void copyDB()
 	{
 		File dir = new File(TagActivity.SDCARD + TagActivity.DB_PATH);
@@ -196,7 +197,7 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 			e.printStackTrace();
 		}
 	}
-	//asset에세 db를 외부 sd카드로 옮기는 함수 end
+	//asset�먯꽭 db瑜��몃� sd移대뱶濡���린���⑥닔 end
 	
 	public void getMyInfo(){
 		
@@ -204,12 +205,12 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 		String sql =  " select id,e_mail,pw,nickname,birty_day,blood_type from "+ TagActivity.DB_TB_MY_INFO;
 		Cursor c1 = db.rawQuery(sql, null);		
 		
-		if(c1.getCount() == 0) // 로그인이 안되었다고 판단 -> 로그인 창을 띄운다.
+		if(c1.getCount() == 0) // 濡쒓렇�몄씠 �덈릺�덈떎怨��먮떒 -> 濡쒓렇��李쎌쓣 �꾩슫��
 		{
 			intent =  new Intent(this,PreferenceMemberLoginActivity.class);
 			startActivity(intent);
 		}
-		else // 로그인이 되어있다고 판단하여서 서버에 로그인 함
+		else // 濡쒓렇�몄씠 �섏뼱�덈떎怨��먮떒�섏뿬���쒕쾭��濡쒓렇����
 		{
 			while(c1.moveToNext())
 			{
@@ -231,13 +232,13 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 	}
 	
 	
-	// AndroidManifest.xml에 권한과 activity를 추가하여야 합니다.     
+	// AndroidManifest.xml��沅뚰븳怨�activity瑜�異붽��섏뿬���⑸땲��     
     protected void initAds()
     {
-    	// 광고 스케줄링 설정을 위해 아래 내용을 프로그램 실행시 한번만 실행합니다. (처음 실행되는 activity에서 한번만 호출해주세요.)    	
-    	// 광고 subview 의 패키지 경로를 설정합니다. (실제로 작성된 패키지 경로로 수정해주세요.)
+    	// 愿묎퀬 �ㅼ�以꾨쭅 �ㅼ젙���꾪빐 �꾨옒 �댁슜���꾨줈洹몃옩 �ㅽ뻾���쒕쾲留��ㅽ뻾�⑸땲�� (泥섏쓬 �ㅽ뻾�섎뒗 activity�먯꽌 �쒕쾲留��몄텧�댁＜�몄슂.)    	
+    	// 愿묎퀬 subview ���⑦궎吏�寃쎈줈瑜��ㅼ젙�⑸땲�� (�ㅼ젣濡��묒꽦���⑦궎吏�寃쎈줈濡��섏젙�댁＜�몄슂.)
 
-    	// 쓰지 않을 광고플랫폼은 삭제해주세요.
+    	// �곗� �딆쓣 愿묎퀬�뚮옯�쇱� ��젣�댁＜�몄슂.
         AdlibConfig.getInstance().bindPlatform("ADAM","com.bigsensation.preference.ads.SubAdlibAdViewAdam");
         AdlibConfig.getInstance().bindPlatform("SHALLWEAD","com.bigsensation.preference.ads.SubAdlibAdViewShallWeAd");
 //        AdlibConfig.getInstance().bindPlatform("ADMOB","test.adlib.project.ads.SubAdlibAdViewAdmob");
@@ -245,39 +246,39 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 //        AdlibConfig.getInstance().bindPlatform("TAD","test.adlib.project.ads.SubAdlibAdViewTAD");
 //        AdlibConfig.getInstance().bindPlatform("NAVER","test.adlib.project.ads.SubAdlibAdViewNaverAdPost");
 //        AdlibConfig.getInstance().bindPlatform("INMOBI","test.adlib.project.ads.SubAdlibAdViewInmobi");
-        // 쓰지 않을 플랫폼은 JAR 파일 및 test.adlib.project.ads 경로에서 삭제하면 최종 바이너리 크기를 줄일 수 있습니다.        
+        // �곗� �딆쓣 �뚮옯�쇱� JAR �뚯씪 諛�test.adlib.project.ads 寃쎈줈�먯꽌 ��젣�섎㈃ 理쒖쥌 諛붿씠�덈━ �ш린瑜�以꾩씪 ���덉뒿�덈떎.        
         
-        // SMART* dialog 노출 시점 선택시 / setAdlibKey 키가 호출되는 activity 가 시작 activity 이며 해당 activity가 종료되면 app 종료로 인식합니다.
-        // adlibr.com 에서 발급받은 api 키를 입력합니다.
+        // SMART* dialog �몄텧 �쒖젏 �좏깮��/ setAdlibKey �ㅺ� �몄텧�섎뒗 activity 媛��쒖옉 activity �대ŉ �대떦 activity媛�醫낅즺�섎㈃ app 醫낅즺濡��몄떇�⑸땲��
+        // adlibr.com �먯꽌 諛쒓툒諛쏆� api �ㅻ� �낅젰�⑸땲��
         // https://sec.adlibr.com/admin/dashboard.jsp
         AdlibConfig.getInstance().setAdlibKey("51933234e4b00e029838d47f");        
                 
 
          /*
-         // Locale 별 다른 스케줄을 적용하신다면,
+         // Locale 蹂��ㅻⅨ �ㅼ�以꾩쓣 �곸슜�섏떊�ㅻ㈃,
          Locale locale = this.getResources().getConfiguration().locale;
          String lc = locale.getLanguage();
          
          if(lc.equals("ko"))
          {
-         // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
-         AdlibConfig.getInstance().setAdlibKey("대한민국 광고 스케줄링");
+         // �ㅺ뎅���ㅼ�以꾩쓣 �ㅼ젙�섏떆�ㅻ㈃ �좊뱶由쎌뿉��蹂꾨룄濡��ㅻ� �앹꽦�섏떆怨��대떦 �ㅻ� �곸슜�댁＜�몄슂.
+         AdlibConfig.getInstance().setAdlibKey("��븳誘쇨뎅 愿묎퀬 �ㅼ�以꾨쭅");
          }
          else
          {
-         // 다국어 스케줄을 설정하시려면 애드립에서 별도로 키를 생성하시고 해당 키를 적용해주세요.
-         AdlibConfig.getInstance().setAdlibKey("그밖의 나라");
+         // �ㅺ뎅���ㅼ�以꾩쓣 �ㅼ젙�섏떆�ㅻ㈃ �좊뱶由쎌뿉��蹂꾨룄濡��ㅻ� �앹꽦�섏떆怨��대떦 �ㅻ� �곸슜�댁＜�몄슂.
+         AdlibConfig.getInstance().setAdlibKey("洹몃컰���섎씪");
          }
          */
 
         
         /* 
-         * deprecated : SMART* dialog 를 통해 보다 쉽게 버전관리를 할 수 있습니다.
+         * deprecated : SMART* dialog 瑜��듯빐 蹂대떎 �쎄쾶 踰꾩쟾愿�━瑜������덉뒿�덈떎.
          */
 
 		/*
-		// 광고뷰가 없는 activity 에서는 listener 대신 아래와 같은 방법으로 설정한 현재 버전을 가져올 수 있습니다.
-		// 애드립에서 설정한 버전정보를 아래와 같이 수신합니다.
+		// 愿묎퀬酉곌� �녿뒗 activity �먯꽌��listener ��떊 �꾨옒��媛숈� 諛⑸쾿�쇰줈 �ㅼ젙���꾩옱 踰꾩쟾��媛�졇�����덉뒿�덈떎.
+		// �좊뱶由쎌뿉���ㅼ젙��踰꾩쟾�뺣낫瑜��꾨옒��媛숈씠 �섏떊�⑸땲��
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
           @Override
@@ -287,15 +288,15 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
         }, 1000);
 	 	*/        
         /*
-        // 클라이언트 버전관리를 위한 리스너 추가
-        // 서버에서 클라이언트 버전을 관리하여 사용자에게 업데이트를 안내할 수 있습니다. (option)
+        // �대씪�댁뼵��踰꾩쟾愿�━瑜��꾪븳 由ъ뒪��異붽�
+        // �쒕쾭�먯꽌 �대씪�댁뼵��踰꾩쟾��愿�━�섏뿬 �ъ슜�먯뿉寃��낅뜲�댄듃瑜��덈궡�����덉뒿�덈떎. (option)
         this.setVersionCheckingListner(new AdlibVersionCheckingListener(){
 
 			@Override
 			public void gotCurrentVersion(String ver) {
 				
-				// 서버에서 설정한 버전정보를 수신했습니다.
-				// 기존 클라이언트 버전을 확인하여 적절한 작업을 수행하세요.
+				// �쒕쾭�먯꽌 �ㅼ젙��踰꾩쟾�뺣낫瑜��섏떊�덉뒿�덈떎.
+				// 湲곗〈 �대씪�댁뼵��踰꾩쟾���뺤씤�섏뿬 �곸젅���묒뾽���섑뻾�섏꽭��
 				double current = 0.9;
 				
 				double newVersion = Double.parseDouble(ver);				
@@ -304,16 +305,16 @@ public class PreferenceIntroActivity extends AdlibActivity implements OnClickLis
 					
 				
 				new AlertDialog.Builder(AdlibTestProjectActivity.this)
-			    .setTitle("버전 업데이트")
-			    .setMessage("프로그램을 업데이트 하시겠습니까?")
+			    .setTitle("踰꾩쟾 �낅뜲�댄듃")
+			    .setMessage("�꾨줈洹몃옩���낅뜲�댄듃 �섏떆寃좎뒿�덇퉴?")
 					    .setPositiveButton("yes", new DialogInterface.OnClickListener() {
 					      public void onClick(DialogInterface dialog, int whichButton) {
-					    	  // 마켓 또는 안내 페이지로 이동합니다.
+					    	  // 留덉폆 �먮뒗 �덈궡 �섏씠吏�줈 �대룞�⑸땲��
 					      }
 					    })	    
 					    .setNegativeButton("no", new DialogInterface.OnClickListener() {
 					      public void onClick(DialogInterface dialog, int whichButton) {
-					    	  // 업데이트를 하지 않습니다.
+					    	  // �낅뜲�댄듃瑜��섏� �딆뒿�덈떎.
 					      }
 					    })	    
 			    .show();
